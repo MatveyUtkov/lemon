@@ -88,20 +88,24 @@ public V remove(K key) {
 }
 
 public boolean contains(V value) {
-	  for (MyHashTable<K, V>.HashNode<K, V> hashNodes : chainArray) {
-          if (size != 0 && hashNodes.value == value) {
-              return true;
-          }
-      }
-      return false;
+	 for (int i = chainArray.length - 1; i > 0; i--) {
+         for (HashNode<K, V> current = chainArray[i]; current != null; current = current.next) {
+             if (current.value.equals(value)) {
+                 return true;
+             }
+         }
+     }
+
+     return false;
 }
 public K getKey(V value) {
-    for (MyHashTable<K, V>.HashNode<K, V> hashNodes : chainArray) {
-        if (size != 0 && hashNodes.value == value) {
-            return hashNodes.key;
-        }
-    }
-    return null;
+	 for (HashNode<K, V> Key : chainArray) {
+         if (Key.value.equals(value)) {
+             return Key.key;
+         }
+     }
+
+     return null;
 }
 }
 
