@@ -88,24 +88,28 @@ public V remove(K key) {
 }
 
 public boolean contains(V value) {
-	 for (int i = chainArray.length - 1; i > 0; i--) {
-         for (HashNode<K, V> current = chainArray[i]; current != null; current = current.next) {
-             if (current.value.equals(value)) {
-                 return true;
-             }
-         }
-     }
+	HashNode<K,V> node;
+	 for (int i =0;i<size;i++) {
+        for (node = chainArray[i]; node != null; node = node.next) {
+            if (node.value==value) {
+                return true;
+            }
+        }
+    }
 
-     return false;
+    return false;
 }
 public K getKey(V value) {
-	 for (HashNode<K, V> Key : chainArray) {
-         if (Key.value.equals(value)) {
-             return Key.key;
-         }
-     }
+	HashNode<K,V> node;
+	 for (int i =0;i<size;i++) {
+        for (node = chainArray[i]; node != null; node = node.next) {
+            if (node.value==value) {
+                return node.key;
+            }
+        }
+    }
 
-     return null;
+    return null;
 }
 }
 
