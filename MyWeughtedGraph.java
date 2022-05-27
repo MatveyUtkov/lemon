@@ -1,19 +1,23 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class MyWeughtedGraph<T> {
     private final boolean undirected;
-    private Set<Vertex<T>> vertices;
+    private final Map<Vertex, List<Edge<Vertex>>> map = new HashMap<>();
     public MyWeughtedGraph() {
         this.undirected = true;
     }
 
     public MyWeughtedGraph(boolean undirected) {
         this.undirected = undirected;
-        vertices=new HashSet<>();    
+          
     }
     public void addVertex(Vertex<T> source) {
-    	 vertices.add(source);
+    	 map.put(source, new LinkedList<>());
     }
   
     public void addEdge(Vertex<T> source, Vertex<T> dest, double weight) {
@@ -26,12 +30,12 @@ public class MyWeughtedGraph<T> {
     }
 
     public int getVerticesCount() {
-        return vertices.size();
+        return map.size();
     }
 
     public int getEdgesCount() {
         int count = 0;
-        for (Vertex<T> vertex : vertices) {
+        for (Vertex<T> vertex : map) {
             int degree = vertex.degreeOfVertex();
             count += degree;
         }
@@ -43,7 +47,7 @@ public class MyWeughtedGraph<T> {
 
 
     public boolean hasVertex(Vertex<T> v) {
-        return vertices.contains(v);
+        return map.containsKey(v);
     }
 
     public boolean hasEdge(Vertex<T> source, Vertex<T> dest) {

@@ -6,18 +6,18 @@ import java.util.Set;
 
 public class MySearch<T> {
     protected int count;
-    protected Set<Vertex<T>> marked;
+    protected Set<Vertex<T>> visited;
     protected Map<Vertex<T>, Vertex<T>> edgeTo;
     protected final Vertex<T> source;
 
     public MySearch(Vertex<T> source) {
         this.source = source;
-        marked = new HashSet<>();
+        visited = new HashSet<>();
         edgeTo = new HashMap<>();
     }
 
     public boolean hasPathTo(String key) {
-        return marked.contains(key);
+        return visited.contains(key);
     }
 
     public Iterable<Vertex<T>> pathTo(String key) {
